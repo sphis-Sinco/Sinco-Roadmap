@@ -174,9 +174,11 @@ class PlayState extends FlxState
 
 		offset.x += line.width;
 		prevDate = entry.date;
+
 		#if !all_traces
 		trace('Made $index/${roadmap.length} entries');
 		#end
+
 		index++;
 	}
 
