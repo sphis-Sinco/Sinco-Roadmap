@@ -1,4 +1,7 @@
 # v1.1 - 3/15/2025
+- Added save data
+- Added `isNew` and `newID` json fields which will apply to new entries with `newID` being increased for each update
+        - This makes the label of the entry lime and the line red
 - Fixed the "Made ../.. entries" traces
 - Added new entry for Sinco Roadmap v1.1
 - Added key (F) to move to the previous stop via a count
