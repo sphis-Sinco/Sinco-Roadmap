@@ -83,16 +83,16 @@ class PlayState extends FlxState
 			if (offset.x != 0)
 			{
 				trace('Time distances ($indexString): $MonthDistance/$DayDistance/$YearDistance');
-				linelen = (line_default_length) + (MonthDistance + DayDistance + YearDistance);
+				linelen = (line_default_length) + ((MonthDistance + DayDistance + YearDistance) * 12);
 			}
 			trace('line length ($indexString): $linelen');
 
 			var referenceLine:FlxSprite = new FlxSprite();
-			referenceLine.makeGraphic(line_default_length, 32);
+			referenceLine.makeGraphic(line_default_length, 16);
 			referenceLine.screenCenter();
 
 			var line:FlxSprite = new FlxSprite();
-			line.makeGraphic(linelen, 32, (entry.destination ? FlxColor.LIME : FlxColor.WHITE));
+			line.makeGraphic(linelen, Std.int(referenceLine.height), (entry.destination ? FlxColor.LIME : FlxColor.WHITE));
 			line.setPosition(referenceLine.x, referenceLine.y);
 			line.x += offset.x;
 			line.y += offset.y;
