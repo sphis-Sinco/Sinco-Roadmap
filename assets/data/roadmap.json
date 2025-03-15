@@ -8,7 +8,13 @@
         {
                 "date":"3.16.2025",
                 "destination": false,
-                "label": "Reje 1 (animation)",
+                "label": "Reje 1",
                 "icon": "newgrounds"
+        },
+        {
+                "date":"3.16.2025",
+                "destination": false,
+                "label": "Reje 1",
+                "icon": "youtube"
         }
 ]

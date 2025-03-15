@@ -12,6 +12,7 @@ import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import haxe.Json;
 import sinlib.utilities.FileManager;
+import sinlib.utilities.TryCatch;
 
 class PlayState extends FlxState
 {
@@ -168,12 +169,20 @@ class PlayState extends FlxState
 	function getRoadmapData():Array<RoadmapEntry>
 	{
 		var http = new haxe.Http("https://raw.githubusercontent.com/sphis-Sinco/Sinco-Roadmap/refs/heads/main/assets/data/roadmap.json");
-		var returnedData:Array<String> = [];
 
-		http.onData = function(data:String)
+		http.onData = function(data:Dynamic)
 		{
 			trace('No http error!');
-			FileManager.writeToPath(FileManager.getDataFile('roadmap.json'), data);
+			trace(data);
+			TryCatch.tryCatch(() ->
+			{
+				return Json.parse(data);
+			}, {
+					errFunc: () ->
+					{
+						return FileManager.getJSON(FileManager.getDataFile('roadmap.json'));
+					}
+			});
 		}
 
 		http.onError = function(error)
