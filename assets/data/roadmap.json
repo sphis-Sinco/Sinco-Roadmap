@@ -1,7 +1,12 @@
 [
         {
-                "date":"3.15.2024",
+                "date":"3.16.2025",
                 "destination": true,
-                "label": "Sinco roadmap"
+                "label": "Sinco roadmap release"
+        },
+        {
+                "date":"3.30.2025",
+                "destination": false,
+                "label": "Testing value"
         }
 ]
