@@ -1,4 +1,6 @@
 # v1.1 - 3/15/2025
+- Fixed the "Made ../.. entries" traces
+- Added new entry for Sinco Roadmap v1.1
 - Added key (F) to move to the previous stop via a count
         - Count resets when moving horizontally
 - Added key (D) to move to the next stop via a count

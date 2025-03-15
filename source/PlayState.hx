@@ -207,13 +207,13 @@ class PlayState extends FlxState
 		offset.x += line.width;
 		prevDate = entry.date;
 
-		#if !all_traces
-		trace('Made $index/${roadmap.length} entries');
-		// trace(entry.date);
-		#end
-
 		index++;
 		roadmapOffsetXPositions.push(offset.x);
+
+		#if !all_traces
+		trace('Made ${index - 1}/${roadmap.length} entries');
+		// trace(entry.date);
+		#end
 	}
 
 	final scrollSpeed:Float = 10.0;
