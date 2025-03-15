@@ -36,8 +36,6 @@ class PlayState extends FlxState
 
 		roadmapTexts = new FlxTypedGroup<FlxText>();
 
-		var offset:FlxPoint = new FlxPoint(0, 0);
-
 		var curDay:Int = Date.now().getDate();
 		var curMonth:Int = Date.now().getMonth();
 		var curYear:Int = Date.now().getFullYear();
@@ -45,106 +43,114 @@ class PlayState extends FlxState
 		var curDate:String = '$curMonth.$curDay.$curYear';
 		trace('curDate: $curDate');
 
-		var prevDate:String = '';
-
-		var index:Int = 1;
-		var destinationCounts:Int = 0;
-		var pitstopCounts:Int = 0;
 		for (entry in roadmap)
 		{
-			final atEnd:Bool = (index != roadmap.length);
-
-			if (entry.destination)
-			{
-				destinationCounts++;
-			}
-			else
-			{
-				pitstopCounts++;
-			}
-
-			final indexString:String = 'Idx: $index';
-
-			var linelen:Int = line_default_length;
-
-			var prevDateArray = prevDate.split('.');
-			var entrydateArray = entry.date.split('.');
-
-			final prevdateMonth:Int = Std.parseInt(prevDateArray[0]);
-			final prevdateDay:Int = Std.parseInt(prevDateArray[1]);
-			final prevdateYear:Int = Std.parseInt(prevDateArray[2]);
-
-			final entrydateMonth:Int = Std.parseInt(entrydateArray[0]);
-			final entrydateDay:Int = Std.parseInt(entrydateArray[1]);
-			final entrydateYear:Int = Std.parseInt(entrydateArray[2]);
-
-			final MonthDistance:Int = entrydateMonth - prevdateMonth;
-			final DayDistance:Int = entrydateDay - prevdateDay;
-			final YearDistance:Int = entrydateYear - prevdateYear;
-
-			if (offset.x != 0)
-			{
-				trace('Time distances ($indexString): $MonthDistance/$DayDistance/$YearDistance');
-				linelen = (line_default_length) + ((MonthDistance + DayDistance + YearDistance) * 12);
-			}
-			trace('line length ($indexString): $linelen');
-
-			var referenceLine:FlxSprite = new FlxSprite();
-			referenceLine.makeGraphic(line_default_length, 16);
-			referenceLine.screenCenter();
-
-			var line:FlxSprite = new FlxSprite();
-			line.makeGraphic(linelen, Std.int(referenceLine.height), (entry.destination ? FlxColor.LIME : FlxColor.WHITE));
-			line.setPosition(referenceLine.x, referenceLine.y);
-			line.x += offset.x;
-			line.y += offset.y;
-			if (atEnd)
-			{
-				roadmapGraphic.add(line);
-			}
-
-			var label:FlxText = new FlxText(line.x, 0, 0, "", 16);
-			label.text = '${(entry.destination ? 'DESTINATION $destinationCounts' : 'PITSTOP $pitstopCounts')}:\n${entry.label}\nDate: ${entry.date}';
-
-			final label_offset_height:Float = label.height;
-
-			final label_vertical_offset = 4;
-			final line_height_w_vert_off = line.height + label_vertical_offset;
-
-			if (index % 2 == 0)
-			{
-				trace('Swapping from bottom to top ($indexString): ${entry.label}');
-				label.y = line.y - (line_height_w_vert_off) - (label_offset_height);
-			}
-			else
-			{
-				label.y = line.y + (line_height_w_vert_off) + (label_offset_height / 4);
-			}
-			roadmapGraphic.add(label);
-			roadmapTexts.add(label);
-
-			var icon:String = entry.icon;
-
-			if (icon == 'default'
-				&& entry.destination
-				|| !FileManager.exists(FileManager.getImageFile('stop-$icon'))
-				&& entry.destination)
-			{
-				icon = 'destination';
-			}
-
-			var stopIcon:StopIcon = new StopIcon(icon);
-			stopIcon.setPosition(line.x + stopIcon.stop_icon_x_offset - stopIcon.stop_icon_pixel * 2, line.y + stopIcon.stop_icon_y_offset);
-			roadmapGraphic.add(stopIcon);
-
-			offset.x += line.width;
-			prevDate = entry.date;
-			index++;
+			addNewEntryObjects(entry);
 		}
 		cam = new FlxObject(0, -180, 1280, 720);
 		add(cam);
 
 		FlxG.camera.follow(cam);
+	}
+
+	var destinationCounts:Int = 0;
+	var pitstopCounts:Int = 0;
+
+	var offset:FlxPoint = new FlxPoint(0, 0);
+        
+	var prevDate:String = '';
+
+	var index:Int = 1;
+	function addNewEntryObjects(entry:RoadmapEntry)
+	{
+		final atEnd:Bool = (index != roadmap.length);
+
+		if (entry.destination)
+		{
+			destinationCounts++;
+		}
+		else
+		{
+			pitstopCounts++;
+		}
+
+		final indexString:String = 'Idx: $index';
+
+		var linelen:Int = line_default_length;
+
+		var prevDateArray = prevDate.split('.');
+		var entrydateArray = entry.date.split('.');
+
+		final prevdateMonth:Int = Std.parseInt(prevDateArray[0]);
+		final prevdateDay:Int = Std.parseInt(prevDateArray[1]);
+		final prevdateYear:Int = Std.parseInt(prevDateArray[2]);
+
+		final entrydateMonth:Int = Std.parseInt(entrydateArray[0]);
+		final entrydateDay:Int = Std.parseInt(entrydateArray[1]);
+		final entrydateYear:Int = Std.parseInt(entrydateArray[2]);
+
+		final MonthDistance:Int = entrydateMonth - prevdateMonth;
+		final DayDistance:Int = entrydateDay - prevdateDay;
+		final YearDistance:Int = entrydateYear - prevdateYear;
+
+		if (offset.x != 0)
+		{
+			trace('Time distances ($indexString): $MonthDistance/$DayDistance/$YearDistance');
+			linelen = (line_default_length) + ((MonthDistance + DayDistance + YearDistance) * 12);
+		}
+		trace('line length ($indexString): $linelen');
+
+		var referenceLine:FlxSprite = new FlxSprite();
+		referenceLine.makeGraphic(line_default_length, 16);
+		referenceLine.screenCenter();
+
+		var line:FlxSprite = new FlxSprite();
+		line.makeGraphic(linelen, Std.int(referenceLine.height), (entry.destination ? FlxColor.LIME : FlxColor.WHITE));
+		line.setPosition(referenceLine.x, referenceLine.y);
+		line.x += offset.x;
+		line.y += offset.y;
+		if (atEnd)
+		{
+			roadmapGraphic.add(line);
+		}
+
+		var label:FlxText = new FlxText(line.x, 0, 0, "", 16);
+		label.text = '${(entry.destination ? 'DESTINATION $destinationCounts' : 'PITSTOP $pitstopCounts')}:\n${entry.label}\nDate: ${entry.date}';
+
+		final label_offset_height:Float = label.height;
+
+		final label_vertical_offset = 4;
+		final line_height_w_vert_off = line.height + label_vertical_offset;
+
+		if (index % 2 == 0)
+		{
+			trace('Swapping from bottom to top ($indexString): ${entry.label}');
+			label.y = line.y - (line_height_w_vert_off) - (label_offset_height);
+		}
+		else
+		{
+			label.y = line.y + (line_height_w_vert_off) + (label_offset_height / 4);
+		}
+		roadmapGraphic.add(label);
+		roadmapTexts.add(label);
+
+		var icon:String = entry.icon;
+
+		if (icon == 'default'
+			&& entry.destination
+			|| !FileManager.exists(FileManager.getImageFile('stop-$icon'))
+			&& entry.destination)
+		{
+			icon = 'destination';
+		}
+
+		var stopIcon:StopIcon = new StopIcon(icon);
+		stopIcon.setPosition(line.x + stopIcon.stop_icon_x_offset - stopIcon.stop_icon_pixel * 2, line.y + stopIcon.stop_icon_y_offset);
+		roadmapGraphic.add(stopIcon);
+
+		offset.x += line.width;
+		prevDate = entry.date;
+		index++;
 	}
 
 	final scrollSpeed:Float = 10.0;
