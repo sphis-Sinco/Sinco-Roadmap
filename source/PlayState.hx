@@ -276,9 +276,9 @@ class PlayState extends FlxState
 
 	function camLimits()
 	{
-		if (FlxG.camera.zoom < 1)
+		if (FlxG.camera.zoom < 0.5)
 		{
-			FlxG.camera.zoom = 1;
+			FlxG.camera.zoom = 0.5;
 		}
 
 		if (FlxG.camera.zoom > 2)
