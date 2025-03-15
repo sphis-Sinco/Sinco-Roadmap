@@ -43,8 +43,19 @@ class PlayState extends FlxState
 		var prevDate:String = '';
 
 		var index:Int = 1;
+		var destinationCounts:Int = 0;
+		var pitstopCounts:Int = 0;
 		for (entry in roadmap)
 		{
+			if (entry.destination)
+			{
+				destinationCounts++;
+			}
+			else
+			{
+				pitstopCounts++;
+			}
+
 			final indexString:String = 'Idx: $index';
 
 			var linelen:Int = line_default_length;
@@ -67,7 +78,7 @@ class PlayState extends FlxState
 			if (offset.x != 0)
 			{
 				trace('Time distances ($indexString): $MonthDistance/$DayDistance/$YearDistance');
-				linelen = (line_default_length * 2) + (MonthDistance + DayDistance + YearDistance);
+				linelen = (line_default_length) + (MonthDistance + DayDistance + YearDistance);
 			}
 			trace('line length ($indexString): $linelen');
 
@@ -82,13 +93,22 @@ class PlayState extends FlxState
 			line.y += offset.y;
 			roadmapGraphic.add(line);
 
+			var label:FlxText = new FlxText(line.x, 0, 0, "", 32);
+			label.text = '${(entry.destination ? 'DESTINATION $destinationCounts' : 'PITSTOP $pitstopCounts')}:\n${entry.label}\nDate: ${entry.date}';
+
+			final label_offset_height:Float = label.height;
+
 			final label_vertical_offset = 4;
 			final line_height_w_vert_off = line.height + label_vertical_offset;
-			var label:FlxText = new FlxText(line.x, line.y + (line_height_w_vert_off), 0, entry.label, 32);
+
 			if (index % 2 == 0)
 			{
 				trace('Swapping from bottom to top ($indexString): ${entry.label}');
-				label.y = line.y - (line_height_w_vert_off);
+				label.y = line.y - (line_height_w_vert_off) - (label_offset_height);
+			}
+			else
+			{
+				label.y = line.y + (line_height_w_vert_off) + (label_offset_height / 4);
 			}
 			roadmapGraphic.add(label);
 			roadmapTexts.add(label);

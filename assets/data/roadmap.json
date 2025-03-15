@@ -2,11 +2,11 @@
         {
                 "date":"3.15.2025",
                 "destination": true,
-                "label": "Sinco roadmap release"
+                "label": "Sinco roadmap v1"
         },
         {
-                "date":"3.30.2025",
+                "date":"3.16.2025",
                 "destination": false,
-                "label": "Testing value"
+                "label": "Reje 1 (animation)"
         }
 ]
