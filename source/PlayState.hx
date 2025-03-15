@@ -114,10 +114,14 @@ class PlayState extends FlxState
 
 		if (offset.x != 0)
 		{
+			#if all_traces
 			trace('Time distances ($indexString): $MonthDistance/$DayDistance/$YearDistance');
+			#end
 			linelen = (line_default_length) + (((MonthDistance * 6) + DayDistance + (YearDistance * 12)) * 12);
 		}
+		#if all_traces
 		trace('line length ($indexString): $linelen');
+		#end
 
 		var referenceLine:FlxSprite = new FlxSprite();
 		referenceLine.makeGraphic(line_default_length, 16);
@@ -143,7 +147,9 @@ class PlayState extends FlxState
 
 		if (index % 2 == 0)
 		{
+			#if all_traces
 			trace('Swapping from bottom to top ($indexString): ${entry.label}');
+			#end
 			label.y = line.y - (line_height_w_vert_off) - (label_offset_height);
 		}
 		else
@@ -168,6 +174,9 @@ class PlayState extends FlxState
 
 		offset.x += line.width;
 		prevDate = entry.date;
+		#if !all_traces
+		trace('Made $index/${roadmap.length} entries');
+		#end
 		index++;
 	}
 
