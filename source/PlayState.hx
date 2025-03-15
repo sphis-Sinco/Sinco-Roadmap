@@ -113,6 +113,16 @@ class PlayState extends FlxState
 			roadmapGraphic.add(label);
 			roadmapTexts.add(label);
 
+			final stop_icon_scale = 4;
+			final stop_icon_pixel = 1 * stop_icon_scale;
+			final stop_icon_x_offset = 1 * stop_icon_pixel;
+			final stop_icon_y_offset = 1 * stop_icon_pixel;
+			var stopIcon:FlxSprite = new FlxSprite();
+			stopIcon.loadGraphic(FileManager.getImageFile('stop-default'));
+			stopIcon.setPosition(line.x + stop_icon_x_offset, line.y + stop_icon_y_offset);
+			stopIcon.scale.set(stop_icon_scale, stop_icon_scale);
+			roadmapGraphic.add(stopIcon);
+
 			offset.x += line.width;
 			prevDate = entry.date;
 			index++;
