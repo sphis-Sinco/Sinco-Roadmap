@@ -53,7 +53,7 @@ class PlayState extends FlxState
 		for (entry in roadmap)
 		{
 			final atEnd:Bool = (index != roadmap.length);
-                        
+
 			if (entry.destination)
 			{
 				destinationCounts++;
@@ -148,6 +148,7 @@ class PlayState extends FlxState
 	}
 
 	final scrollSpeed:Float = 10.0;
+	final camScrollSpeed:Float = 0.1;
 
 	override public function update(elapsed:Float)
 	{
@@ -170,9 +171,49 @@ class PlayState extends FlxState
 			moveVertical(-scrollSpeed);
 		}
 
+		if (!FlxG.keys.pressed.SHIFT)
+		{
+			if (FlxG.keys.justReleased.E)
+			{
+				zoom(camScrollSpeed);
+				camLimits();
+			}
+			else if (FlxG.keys.justReleased.Q)
+			{
+				zoom(-camScrollSpeed);
+				camLimits();
+			}
+		}
+		else
+		{
+			if (FlxG.keys.pressed.E)
+			{
+				zoom(camScrollSpeed);
+				camLimits();
+			}
+			else if (FlxG.keys.pressed.Q)
+			{
+				zoom(-camScrollSpeed);
+				camLimits();
+			}
+		}
+
 		if (FlxG.keys.pressed.R)
 		{
-                        FlxG.resetState();
+			FlxG.resetState();
+		}
+	}
+
+	function camLimits()
+	{
+		if (FlxG.camera.zoom < 1)
+		{
+			FlxG.camera.zoom = 1;
+		}
+
+		if (FlxG.camera.zoom > 2)
+		{
+			FlxG.camera.zoom = 2;
 		}
 	}
 
@@ -186,31 +227,36 @@ class PlayState extends FlxState
 		cam.y -= speed;
 	}
 
+	function zoom(change:Float)
+	{
+		FlxG.camera.zoom += change;
+	}
+
 	function getRoadmapData():Array<RoadmapEntry>
 	{
 		/*var http = new haxe.Http("https://raw.githubusercontent.com/sphis-Sinco/Sinco-Roadmap/refs/heads/main/assets/data/roadmap.json");
 
-		http.onData = function(data:Dynamic)
-		{
-			trace('No http error!');
-			trace(data);
-			TryCatch.tryCatch(() ->
+			http.onData = function(data:Dynamic)
 			{
-				return Json.parse(data);
-			}, {
-					errFunc: () ->
-					{
-						return FileManager.getJSON(FileManager.getDataFile('roadmap.json'));
-					}
-			});
-		}
+				trace('No http error!');
+				trace(data);
+				TryCatch.tryCatch(() ->
+				{
+					return Json.parse(data);
+				}, {
+						errFunc: () ->
+						{
+							return FileManager.getJSON(FileManager.getDataFile('roadmap.json'));
+						}
+				});
+			}
 
-		http.onError = function(error)
-		{
-			trace('http error: $error');
-		}
+			http.onError = function(error)
+			{
+				trace('http error: $error');
+			}
 
-			http.request(); */
+				http.request(); */
 
 		return FileManager.getJSON(FileManager.getDataFile('roadmap.json'));
 	}
