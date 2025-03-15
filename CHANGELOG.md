@@ -1,4 +1,5 @@
 # v1.1 - 3/15/2025
+- Shortened time distances
 - Added save data
 - Added `isNew` and `newID` json fields which will apply to new entries with `newID` being increased for each update
         - This makes the label of the entry lime and the line red
