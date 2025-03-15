@@ -57,6 +57,8 @@ class PlayState extends FlxState
 			addNewEntryObjects(entry);
 		}
 
+		trace('All non-existing stop icon suffixes:\n${StopIcon.doesnt_exist}');
+
 		cam = new FlxObject(0, -180, 1280, 720);
 		add(cam);
 

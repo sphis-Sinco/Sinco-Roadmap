@@ -11,6 +11,8 @@ class StopIcon extends FlxSprite
 	public var stop_icon_x_offset = 1;
 	public var stop_icon_y_offset = 1;
 
+	public static var doesnt_exist:Array<String> = [];
+
 	public var stopvalues:Map<String, Array<Dynamic>> = [
 		'newgrounds' => [
 			true,
@@ -58,6 +60,11 @@ class StopIcon extends FlxSprite
 
 		if (!FileManager.exists(FileManager.getImageFile('stop-$suffix')))
 		{
+			if (!doesnt_exist.contains(suffix))
+			{
+				doesnt_exist.push(suffix);
+				trace('stop-$suffix doesn\'t exist');
+			}
 			suffix = 'default';
 		}
 
