@@ -43,6 +43,8 @@ class PlayState extends FlxState
 		var index:Int = 1;
 		for (entry in roadmap)
 		{
+			final indexString:String = 'Idx: $index';
+
 			var linelen:Int = line_default_length;
 
 			var prevDateArray = prevDate.split('.');
@@ -62,10 +64,10 @@ class PlayState extends FlxState
 
 			if (offset.x != 0)
 			{
-				trace('Time distances: $MonthDistance/$DayDistance/$YearDistance');
+				trace('Time distances ($indexString): $MonthDistance/$DayDistance/$YearDistance');
 				linelen = (line_default_length * 2) + (MonthDistance + DayDistance + YearDistance);
 			}
-			trace('line length: $linelen');
+			trace('line length ($indexString): $linelen');
 
 			var referenceLine:FlxSprite = new FlxSprite();
 			referenceLine.makeGraphic(line_default_length, 32);
@@ -83,7 +85,7 @@ class PlayState extends FlxState
 			var label:FlxText = new FlxText(line.x, line.y + (line_height_w_vert_off), 0, entry.label, 32);
 			if (index % 2 == 0)
 			{
-				trace('Swapping from bottom to top: ${entry.label}');
+				trace('Swapping from bottom to top ($indexString): ${entry.label}');
 				label.y = line.y - (line_height_w_vert_off);
 			}
 			roadmapGraphic.add(label);
