@@ -19,8 +19,8 @@ class Version
 		patch = Patch;
 	}
 
-        public function toString():String
+	public function toString(includePrefix:Bool = true):String
 	{
-		return '${prefix}v$major.$minor.$patch';
+		return '${includePrefix ? prefix : ''}v$major.$minor.$patch';
 	}
 }

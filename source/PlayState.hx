@@ -23,7 +23,9 @@ class PlayState extends FlxState
 	final line_default_length:Int = 256;
 
 	public var cam:FlxObject;
-	var version:Version = new Version("Sinco Roadmap ", 1, 1, 0);
+	public static var version:Version = new Version("Sinco Roadmap ", 1, 1, 0);
+
+	public static var currentNewID:Int = 1;
 
 	override public function create()
 	{
@@ -50,6 +52,25 @@ class PlayState extends FlxState
 			label: 'Now',
 			icon: 'now'
 		});
+
+		FlxG.save.bind('sinco-roadmap', 'Sinco/ROADMAP');
+
+		if (FlxG.save.data.version == null)
+		{
+			trace('Null version');
+			FlxG.save.data.version = PlayState.version.toString(false);
+		}
+
+		FlxG.save.data.previousVersion = FlxG.save.data.version;
+		FlxG.save.data.version = PlayState.version.toString(false);
+
+		FlxG.save.data.checkedOutNewStuff = (FlxG.save.data.previousVersion == PlayState.version.toString(false));
+
+		if (FlxG.save.data.checkedOutNewStuff)
+		{
+			trace('We\'ve played this update (${PlayState.version}) before...');
+			FlxG.save.data.newID = PlayState.currentNewID;
+		}
 
 		for (entry in roadmap)
 		{
@@ -92,6 +113,7 @@ class PlayState extends FlxState
 	function addNewEntryObjects(entry:RoadmapEntry)
 	{
 		final atEnd:Bool = (index != roadmap.length);
+		final isNew:Bool = (entry.isNew && entry.newID > FlxG.save.data.newID);
 
 		if (!entry.doesntCount)
 		{
@@ -152,8 +174,16 @@ class PlayState extends FlxState
 		referenceLine.makeGraphic(line_default_length, 16);
 		referenceLine.screenCenter();
 
+		var lineColor:FlxColor = new FlxColor();
+		lineColor = entry.destination ? FlxColor.LIME : FlxColor.WHITE;
+
+		if (isNew)
+		{
+			lineColor = FlxColor.RED;
+		}
+
 		var line:FlxSprite = new FlxSprite();
-		line.makeGraphic(linelen, Std.int(referenceLine.height), (entry.destination ? FlxColor.LIME : FlxColor.WHITE));
+		line.makeGraphic(linelen, Std.int(referenceLine.height), lineColor);
 		line.setPosition(referenceLine.x, referenceLine.y);
 		line.x += offset.x;
 		line.y += offset.y;
@@ -171,6 +201,12 @@ class PlayState extends FlxState
 
 		var label:FlxText = new FlxText(line.x, 0, 0, '', 16);
 		label.text = '${labelprefix}${entry.label}\nDate: ${entry.date}';
+
+		if (isNew)
+		{
+			label.color = FlxColor.LIME;
+			label.text += '\nNEW!';
+		}
 
 		final label_offset_height:Float = label.height;
 

@@ -8,7 +8,7 @@ typedef RoadmapEntry =
 	var label:String;
 	var icon:String;
 	var ?isNew:Bool;
-	var ?newID:String;
+	var ?newID:Int;
 }
 
 class RoadmapJsonManager
