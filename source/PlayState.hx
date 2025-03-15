@@ -173,7 +173,7 @@ class PlayState extends FlxState
 		http.onData = function(data:String)
 		{
 			trace('No http error!');
-                        return Json.parse(data);
+			FileManager.writeToPath(FileManager.getDataFile('roadmap.json'), data);
 		}
 
 		http.onError = function(error)
