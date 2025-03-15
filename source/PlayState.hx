@@ -2,6 +2,7 @@ package;
 
 import RoadmapJson.RoadmapEntry;
 import flixel.FlxBasic;
+import flixel.FlxCamera;
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSprite;
@@ -22,6 +23,8 @@ class PlayState extends FlxState
 	public var roadmapTexts:FlxTypedGroup<FlxText>;
 
 	final line_default_length:Int = 256;
+
+	public var cam:FlxObject;
 
 	override public function create()
 	{
@@ -123,6 +126,11 @@ class PlayState extends FlxState
 			prevDate = entry.date;
 			index++;
 		}
+		cam = new FlxObject(0, 0, 1280, 720);
+		cam.screenCenter();
+		add(cam);
+
+		FlxG.camera.follow(cam);
 	}
 
 	final scrollSpeed:Float = 10.0;
@@ -150,20 +158,20 @@ class PlayState extends FlxState
 
 		if (FlxG.keys.pressed.R)
 		{
-			FlxG.camera.x = 0;
-			FlxG.camera.y = 0;
+			cam.x = 0;
+			cam.y = 0;
                         FlxG.resetState();
 		}
 	}
 
 	function moveHortizontal(speed:Float)
 	{
-		FlxG.camera.x += speed;
+		cam.x -= speed;
 	}
 
 	function moveVertical(speed:Float)
 	{
-		FlxG.camera.y += speed;
+		cam.y -= speed;
 	}
 
 	function getRoadmapData():Array<RoadmapEntry>
