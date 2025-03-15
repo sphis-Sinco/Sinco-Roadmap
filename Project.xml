@@ -49,6 +49,8 @@
 	<!--<haxelib name="nape-haxe4" />-->
 
 	<haxelib name="sinlib" />
+        
+	<haxelib name="thx.semver" />
 
 	<!-- ______________________________ Haxedefines _____________________________ -->
 

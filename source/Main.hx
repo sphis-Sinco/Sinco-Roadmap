@@ -1,6 +1,8 @@
 package;
 
+import flixel.FlxG;
 import flixel.FlxGame;
+import funkin.util.plugins.ScreenshotPlugin;
 import openfl.display.Sprite;
 
 class Main extends Sprite
@@ -9,5 +11,6 @@ class Main extends Sprite
 	{
 		super();
 		addChild(new FlxGame(0, 0, PlayState));
+		ScreenshotPlugin.initialize();
 	}
 }
