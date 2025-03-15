@@ -18,6 +18,8 @@ class PlayState extends FlxState
 	public var roadmapGraphic:FlxTypedGroup<FlxObject>;
 	public var roadmapStops:FlxTypedGroup<StopIcon>;
 
+	public var roadmapOffsetXPositions:Array<Float> = [];
+
 	final line_default_length:Int = 256;
 
 	public var cam:FlxObject;
@@ -67,7 +69,9 @@ class PlayState extends FlxState
 			+ 'Holding Shift - increase speed of Camera movement and zooming\n'
 			+ 'R - Reset\n'
 			+ 'A - Skip to the end\n'
-			+ 'S - Go to the beginning\n',
+			+ 'S - Go to the beginning\n'
+			+ 'D - Move to next stop\n'
+			+ 'F - Move to previous stop\n',
 			16);
 		helpText.scrollFactor.set(0, 0);
 		add(helpText);
@@ -209,12 +213,15 @@ class PlayState extends FlxState
 		#end
 
 		index++;
+		roadmapOffsetXPositions.push(offset.x);
 	}
 
 	final scrollSpeed:Float = 10.0;
 	final camScrollSpeed:Float = 0.1;
 
 	final shiftScrollSpeedMult:Float = 5.0;
+
+	var currentStop:Int = 0;
 
 	override public function update(elapsed:Float)
 	{
@@ -223,18 +230,52 @@ class PlayState extends FlxState
 		horizontalAndVerticalMovement();
 		cameraZoom();
 
-		if (FlxG.keys.pressed.R)
+		if (FlxG.keys.justReleased.R)
 		{
 			FlxG.resetState();
 		}
-		if (FlxG.keys.pressed.A)
+		if (FlxG.keys.justReleased.A)
 		{
 			cam.x = offset.x;
 			cam.y = -180;
+			currentStop = roadmapOffsetXPositions.length - 1;
 		}
-		if (FlxG.keys.pressed.S)
+		if (FlxG.keys.justReleased.S)
 		{
 			cam.x = 0;
+			cam.y = -180;
+			currentStop = 0;
+		}
+		if (FlxG.keys.justReleased.D)
+		{
+			currentStop++;
+
+			if (currentStop > roadmapOffsetXPositions.length - 1)
+			{
+				currentStop--;
+				cam.x = offset.x;
+			}
+			else
+			{
+				cam.x = roadmapOffsetXPositions[currentStop];
+			}
+
+			cam.y = -180;
+		}
+		if (FlxG.keys.justReleased.F)
+		{
+			currentStop--;
+
+			if (currentStop < 0)
+			{
+				currentStop++;
+				cam.x = 0;
+			}
+			else
+			{
+				cam.x = roadmapOffsetXPositions[currentStop];
+			}
+
 			cam.y = -180;
 		}
 	}
@@ -311,6 +352,7 @@ class PlayState extends FlxState
 			speedVal = speed * shiftScrollSpeedMult;
 		}
 
+		currentStop = 0;
 		cam.x -= speedVal;
 	}
 

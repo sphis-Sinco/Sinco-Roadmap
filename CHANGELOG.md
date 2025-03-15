@@ -1,4 +1,8 @@
 # v1.1 - 3/15/2025
+- Added key (F) to move to the previous stop via a count
+        - Count resets when moving horizontally
+- Added key (D) to move to the next stop via a count
+        - Count resets when moving horizontally
 - Added key (S) to go to the beginning
 - Added key (A) to skip to the end
 
