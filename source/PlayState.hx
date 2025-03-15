@@ -52,7 +52,8 @@ class PlayState extends FlxState
 		add(cam);
 
 		FlxG.camera.follow(cam);
-		var helpText:FlxText = new FlxText(10, 10, 0, "Arrow keys - Move Camera\nQ/E - Zoom in/out (Do this process faster while holding shift)\nR - Reset",
+		var helpText:FlxText = new FlxText(10, 10, 0,
+			"Arrow keys - Move Camera\nQ/E - Zoom in/out\nHolding Shift - increase speed of Camera movement and zooming\nR - Reset",
 			16);
 		helpText.scrollFactor.set(0, 0);
 		add(helpText);
@@ -185,6 +186,8 @@ class PlayState extends FlxState
 	final scrollSpeed:Float = 10.0;
 	final camScrollSpeed:Float = 0.1;
 
+	final shiftScrollSpeedMult:Float = 2.0;
+
 	override public function update(elapsed:Float)
 	{
 		super.update(elapsed);
@@ -264,12 +267,24 @@ class PlayState extends FlxState
 
 	function moveHortizontal(speed:Float)
 	{
-		cam.x -= speed;
+		var speedVal:Float = speed;
+		if (FlxG.keys.pressed.SHIFT)
+		{
+			speedVal = speed * shiftScrollSpeedMult;
+		}
+
+		cam.x -= speedVal;
 	}
 
 	function moveVertical(speed:Float)
 	{
-		cam.y -= speed;
+		var speedVal:Float = speed;
+		if (FlxG.keys.pressed.SHIFT)
+		{
+			speedVal = speed * shiftScrollSpeedMult;
+		}
+
+		cam.y -= speedVal;
 	}
 
 	function zoom(change:Float)
