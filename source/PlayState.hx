@@ -52,6 +52,8 @@ class PlayState extends FlxState
 		var pitstopCounts:Int = 0;
 		for (entry in roadmap)
 		{
+			final atEnd:Bool = (index != roadmap.length);
+                        
 			if (entry.destination)
 			{
 				destinationCounts++;
@@ -96,7 +98,7 @@ class PlayState extends FlxState
 			line.setPosition(referenceLine.x, referenceLine.y);
 			line.x += offset.x;
 			line.y += offset.y;
-			if (index != roadmap.length)
+			if (atEnd)
 			{
 				roadmapGraphic.add(line);
 			}
@@ -132,15 +134,14 @@ class PlayState extends FlxState
 			}
 
 			var stopIcon:StopIcon = new StopIcon(icon);
-			stopIcon.setPosition(line.x + stopIcon.stop_icon_x_offset, line.y + stopIcon.stop_icon_y_offset);
+			stopIcon.setPosition(line.x + stopIcon.stop_icon_x_offset - stopIcon.stop_icon_pixel * 2, line.y + stopIcon.stop_icon_y_offset);
 			roadmapGraphic.add(stopIcon);
 
 			offset.x += line.width;
 			prevDate = entry.date;
 			index++;
 		}
-		cam = new FlxObject(0, 0, 1280, 720);
-		cam.screenCenter();
+		cam = new FlxObject(0, -180, 1280, 720);
 		add(cam);
 
 		FlxG.camera.follow(cam);

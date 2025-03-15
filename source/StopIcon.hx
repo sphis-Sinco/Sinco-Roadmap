@@ -6,7 +6,7 @@ import sinlib.utilities.TryCatch;
 
 class StopIcon extends FlxSprite
 {
-	public var stop_icon_scale = 4;
+	public var stop_icon_scale = 2;
 	public var stop_icon_pixel = 1;
 	public var stop_icon_x_offset = 1;
 	public var stop_icon_y_offset = 1;
@@ -27,7 +27,7 @@ class StopIcon extends FlxSprite
 
 		stop_icon_pixel = 1 * stop_icon_scale;
 		stop_icon_x_offset = 1 * stop_icon_pixel;
-		stop_icon_y_offset = stop_icon_x_offset + (1 * stop_icon_pixel);
+		stop_icon_y_offset = stop_icon_x_offset - (1 * stop_icon_pixel);
 
 		var ezStopValues:Array<Dynamic> = [false];
 
