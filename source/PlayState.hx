@@ -20,7 +20,7 @@ class PlayState extends FlxState
 	public var roadmap:Array<RoadmapEntry>;
 
 	public var roadmapGraphic:FlxTypedGroup<FlxObject>;
-	public var roadmapTexts:FlxTypedGroup<FlxText>;
+	public var roadmapStops:FlxTypedGroup<StopIcon>;
 
 	final line_default_length:Int = 256;
 
@@ -34,7 +34,8 @@ class PlayState extends FlxState
 		roadmapGraphic = new FlxTypedGroup<FlxObject>();
 		add(roadmapGraphic);
 
-		roadmapTexts = new FlxTypedGroup<FlxText>();
+		roadmapStops = new FlxTypedGroup<StopIcon>();
+		add(roadmapStops);
 
 		var curDay:Int = Date.now().getDate();
 		var curMonth:Int = Date.now().getMonth();
@@ -94,14 +95,27 @@ class PlayState extends FlxState
 		final entrydateDay:Int = Std.parseInt(entrydateArray[1]);
 		final entrydateYear:Int = Std.parseInt(entrydateArray[2]);
 
-		final MonthDistance:Int = entrydateMonth - prevdateMonth;
-		final DayDistance:Int = entrydateDay - prevdateDay;
-		final YearDistance:Int = entrydateYear - prevdateYear;
+		var MonthDistance:Int = entrydateMonth - prevdateMonth;
+		var DayDistance:Int = entrydateDay - prevdateDay;
+		var YearDistance:Int = entrydateYear - prevdateYear;
+
+		if (MonthDistance < 0)
+		{
+			MonthDistance = -MonthDistance;
+		}
+		if (DayDistance < 0)
+		{
+			DayDistance = -DayDistance;
+		}
+		if (YearDistance < 0)
+		{
+			YearDistance = -YearDistance;
+		}
 
 		if (offset.x != 0)
 		{
 			trace('Time distances ($indexString): $MonthDistance/$DayDistance/$YearDistance');
-			linelen = (line_default_length) + ((MonthDistance + DayDistance + YearDistance) * 12);
+			linelen = (line_default_length) + (((MonthDistance * 6) + DayDistance + (YearDistance * 12)) * 12);
 		}
 		trace('line length ($indexString): $linelen');
 
@@ -137,7 +151,6 @@ class PlayState extends FlxState
 			label.y = line.y + (line_height_w_vert_off) + (label_offset_height / 4);
 		}
 		roadmapGraphic.add(label);
-		roadmapTexts.add(label);
 
 		var icon:String = entry.icon;
 

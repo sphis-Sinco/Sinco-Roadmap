@@ -1,7 +1,265 @@
 [
         {
+                "date":"2.4.2022",
+                "destination": true,
+                "label": "Portilizen channel was made",
+                "icon": "youtube"
+        },
+        {
+                "date":"4.9.2022",
+                "destination": true,
+                "label": "First IDR video",
+                "icon": "youtube"
+        },
+        {
+                "date":"4.12.2022",
+                "destination": false,
+                "label": "First Portilizens Revenge video",
+                "icon": "youtube"
+        },
+        {
+                "date":"6.26.2022",
+                "destination": true,
+                "label": "Cross control clash with lyrics 1",
+                "icon": "youtube"
+        },
+        {
+                "date":"6.18.2023",
+                "destination": false,
+                "label": "First polyspace video",
+                "icon": "youtube"
+        },
+        {
+                "date":"1.27.2024",
+                "destination": false,
+                "label": "Vs Guy V1",
+                "icon": "fnf"
+        },
+        {
+                "date":"2.18.2024",
+                "destination": true,
+                "label": "Face reveal",
+                "icon": "sinco"
+        },
+        {
+                "date":"3.17.2024",
+                "destination": false,
+                "label": "First Personalities/Cruel world video",
+                "icon": "game"
+        },
+        {
+                "date":"11.7.2024",
+                "destination": false,
+                "label": "First video with sinco in it",
+                "icon": "sinco"
+        },
+        {
+                "date":"11.16.2024",
+                "destination": false,
+                "label": "First video with sinco as the prefix",
+                "icon": "sinco"
+        },
+        {
+                "date":"1.11.2025",
+                "destination": false,
+                "label": "True progression v0.0.1",
+                "icon": "minecraft"
+        },
+        {
+                "date":"1.11.2025",
+                "destination": false,
+                "label": "True progression v0.0.2",
+                "icon": "minecraft"
+        },
+        {
+                "date":"1.12.2025",
+                "destination": false,
+                "label": "True progression v0.0.3",
+                "icon": "minecraft"
+        },
+        {
+                "date":"1.12.2025",
+                "destination": false,
+                "label": "True progression v0.0.4",
+                "icon": "minecraft"
+        },
+        {
+                "date":"1.13.2025",
+                "destination": false,
+                "label": "True progression v0.0.5",
+                "icon": "minecraft"
+        },
+        {
+                "date":"1.15.2025",
+                "destination": false,
+                "label": "True progression v0.1",
+                "icon": "minecraft"
+        },
+        {
+                "date":"1.15.2025",
+                "destination": false,
+                "label": "True progression v0.1.1",
+                "icon": "minecraft"
+        },
+        {
+                "date":"1.19.2025",
+                "destination": false,
+                "label": "Sin consistencia issue 1 release",
+                "icon": "comic"
+        },
+        {
+                "date":"1.21.2025",
+                "destination": false,
+                "label": "Sin consistencia issue 2 release",
+                "icon": "comic"
+        },
+        {
+                "date":"1.24.2025",
+                "destination": false,
+                "label": "Sin consistencia issue 3 release",
+                "icon": "comic"
+        },
+        {
+                "date":"1.25.2025",
+                "destination": false,
+                "label": "Dreamland v0.1",
+                "icon": "game"
+        },
+        {
+                "date":"1.25.2025",
+                "destination": false,
+                "label": "Dreamland v0.2",
+                "icon": "game"
+        },
+        {
+                "date":"1.25.2025",
+                "destination": false,
+                "label": "Dreamland v0.3",
+                "icon": "game"
+        },
+        {
+                "date":"1.26.2025",
+                "destination": false,
+                "label": "Sin consistencia issue 4 release",
+                "icon": "comic"
+        },
+        {
+                "date":"1.26.2025",
+                "destination": false,
+                "label": "Dreamland v0.3.1",
+                "icon": "game"
+        },
+        {
+                "date":"1.26.2025",
+                "destination": false,
+                "label": "Dreamland v0.3.2",
+                "icon": "game"
+        },
+        {
+                "date":"1.26.2025",
+                "destination": false,
+                "label": "Dreamland v0.3.3",
+                "icon": "game"
+        },
+        {
+                "date":"1.26.2025",
+                "destination": false,
+                "label": "Dreamland v0.4",
+                "icon": "game"
+        },
+        {
+                "date":"1.26.2025",
+                "destination": false,
+                "label": "Dreamland v0.4.1",
+                "icon": "game"
+        },
+        {
+                "date":"1.26.2025",
+                "destination": false,
+                "label": "Dreamland v0.4.2",
+                "icon": "game"
+        },
+        {
+                "date":"2.2.2025",
+                "destination": false,
+                "label": "Sinco and Portilizen v0.0.1-p",
+                "icon": "game"
+        },
+        {
+                "date":"2.6.2025",
+                "destination": false,
+                "label": "Sinco and Portilizen v0.0.2-p",
+                "icon": "game"
+        },
+        {
+                "date":"2.6.2025",
+                "destination": true,
+                "label": "The sinco blog first post (hashnode)",
+                "icon": "blogpost"
+        },
+        {
+                "date":"2.13.2025",
+                "destination": false,
+                "label": "Sinco and Portilizen v0.0.3-p",
+                "icon": "game"
+        },
+        {
+                "date":"2.14.2025",
+                "destination": false,
+                "label": "The first Sinco and Portilizen blog post",
+                "icon": "blogpost"
+        },
+        {
+                "date":"2.14.2025",
+                "destination": false,
+                "label": "Sinco and Portilizen v0.0.4-p",
+                "icon": "game"
+        },
+        {
+                "date":"2.15.2025",
+                "destination": false,
+                "label": "Sinco and Portilizen v0.0.5-p",
+                "icon": "game"
+        },
+        {
+                "date":"2.18.2025",
+                "destination": false,
+                "label": "Sinco and Portilizen v0.0.6-p",
+                "icon": "game"
+        },
+        {
+                "date":"2.19.2025",
+                "destination": false,
+                "label": "Sinco and Portilizen v0.0.7-p",
+                "icon": "game"
+        },
+        {
+                "date":"2.22.2025",
+                "destination": false,
+                "label": "Sinco and Portilizen v0.0.8-p",
+                "icon": "game"
+        },
+        {
+                "date":"2.22.2025",
+                "destination": true,
+                "label": "Sinco and Portilizen v0.1.0a",
+                "icon": "game"
+        },
+        {
+                "date":"2.22.2025",
+                "destination": false,
+                "label": "Sinco and Portilizen v0.1.1a",
+                "icon": "game"
+        },
+        {
                 "date":"3.12.2025",
                 "destination": true,
+                "label": "Sinco and Portilizen v0.2.0a",
+                "icon": "game"
+        },
+        {
+                "date":"3.12.2025",
+                "destination": false,
                 "label": "Sinco and Portilizen v0.2.1a",
                 "icon": "game"
         },
