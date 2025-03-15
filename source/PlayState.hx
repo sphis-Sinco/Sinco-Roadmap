@@ -62,7 +62,13 @@ class PlayState extends FlxState
 		FlxG.camera.follow(cam);
 
 		var helpText:FlxText = new FlxText(10, 10, 0,
-			'Arrow keys - Move Camera\nQ/E - Zoom in/out\nHolding Shift - increase speed of Camera movement and zooming\nR - Reset\nS - Skip to the end', 16);
+			'Arrow keys - Move Camera\n'
+			+ 'Q/E - Zoom in/out\n'
+			+ 'Holding Shift - increase speed of Camera movement and zooming\n'
+			+ 'R - Reset\n'
+			+ 'A - Skip to the end\n'
+			+ 'S - Go to the beginning\n',
+			16);
 		helpText.scrollFactor.set(0, 0);
 		add(helpText);
 		var versionText:FlxText = new FlxText(10, 10 + helpText.height, 0, version.toString(), 16);
