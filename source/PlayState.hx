@@ -62,7 +62,7 @@ class PlayState extends FlxState
 		FlxG.camera.follow(cam);
 
 		var helpText:FlxText = new FlxText(10, 10, 0,
-			'Arrow keys - Move Camera\nQ/E - Zoom in/out\nHolding Shift - increase speed of Camera movement and zooming\nR - Reset', 16);
+			'Arrow keys - Move Camera\nQ/E - Zoom in/out\nHolding Shift - increase speed of Camera movement and zooming\nR - Reset\nS - Skip to the end', 16);
 		helpText.scrollFactor.set(0, 0);
 		add(helpText);
 		var versionText:FlxText = new FlxText(10, 10 + helpText.height, 0, version.toString(), 16);
@@ -220,6 +220,16 @@ class PlayState extends FlxState
 		if (FlxG.keys.pressed.R)
 		{
 			FlxG.resetState();
+		}
+		if (FlxG.keys.pressed.A)
+		{
+			cam.x = offset.x;
+			cam.y = -180;
+		}
+		if (FlxG.keys.pressed.S)
+		{
+			cam.x = 0;
+			cam.y = -180;
 		}
 	}
 
