@@ -164,7 +164,7 @@ class PlayState extends FlxState
 			#if all_traces
 			trace('Time distances ($indexString): $MonthDistance/$DayDistance/$YearDistance');
 			#end
-			linelen = 64 + (((MonthDistance * 6) + (DayDistance * 3) + (YearDistance * 12)) * 12);
+			linelen = line_default_length + (((MonthDistance * 6) + (DayDistance * 3) + (YearDistance * 12)) * 12);
 		}
 		#if all_traces
 		trace('line length ($indexString): $linelen');
