@@ -153,24 +153,18 @@ class PlayState extends FlxState
 	override public function update(elapsed:Float)
 	{
 		super.update(elapsed);
-		if (FlxG.keys.pressed.LEFT)
-		{
-			moveHortizontal(scrollSpeed);
-		}
-		else if (FlxG.keys.pressed.RIGHT)
-		{
-			moveHortizontal(-scrollSpeed);
-		}
+		horizontalAndVerticalMovement();
 
-		if (FlxG.keys.pressed.UP)
-		{
-			moveVertical(scrollSpeed);
-		}
-		else if (FlxG.keys.pressed.DOWN)
-		{
-			moveVertical(-scrollSpeed);
-		}
+		cameraZoom();
 
+		if (FlxG.keys.pressed.R)
+		{
+			FlxG.resetState();
+		}
+	}
+
+	function cameraZoom()
+	{
 		if (!FlxG.keys.pressed.SHIFT)
 		{
 			if (FlxG.keys.justReleased.E)
@@ -197,10 +191,26 @@ class PlayState extends FlxState
 				camLimits();
 			}
 		}
+	}
 
-		if (FlxG.keys.pressed.R)
+	function horizontalAndVerticalMovement()
+	{
+		if (FlxG.keys.pressed.LEFT)
 		{
-			FlxG.resetState();
+			moveHortizontal(scrollSpeed);
+		}
+		else if (FlxG.keys.pressed.RIGHT)
+		{
+			moveHortizontal(-scrollSpeed);
+		}
+
+		if (FlxG.keys.pressed.UP)
+		{
+			moveVertical(scrollSpeed);
+		}
+		else if (FlxG.keys.pressed.DOWN)
+		{
+			moveVertical(-scrollSpeed);
 		}
 	}
 
