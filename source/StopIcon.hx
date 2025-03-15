@@ -54,11 +54,18 @@ class StopIcon extends FlxSprite
 				}
 		});
 
-		loadGraphic(FileManager.getImageFile('stop-$stopSuffix'), animated, 16, 16);
+		var suffix:String = stopSuffix;
+
+		if (!FileManager.exists(FileManager.getImageFile('stop-$suffix')))
+		{
+			suffix = 'default';
+		}
+
+		loadGraphic(FileManager.getImageFile('stop-$suffix'), animated, 16, 16);
 
 		if (animated)
 		{
-			trace('$stopSuffix is animated: ${ezStopValues[1]}');
+			trace('$suffix is animated: ${ezStopValues[1]}');
 			animation.add('idle', ezStopValues[1].frames, ezStopValues[1].fps);
 
 			animation.play('idle');
