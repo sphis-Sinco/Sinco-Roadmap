@@ -2,6 +2,7 @@ package;
 
 import flixel.FlxSprite;
 import sinlib.utilities.FileManager;
+import sinlib.utilities.TryCatch;
 
 class StopIcon extends FlxSprite
 {
@@ -10,34 +11,58 @@ class StopIcon extends FlxSprite
 	public var stop_icon_x_offset = 1;
 	public var stop_icon_y_offset = 1;
 
-        public var stopvalues:Map<String, Array<Dynamic>> = [
-                'default' => [false],
-                'newgrounds' => [true, {
-                        frames: [0,1],
-                        fps: 6
-                }],
-                'youtube' => [false]
-        ];
+	public var stopvalues:Map<String, Array<Dynamic>> = [
+		'newgrounds' => [
+			true,
+			{
+				frames: [0, 1],
+				fps: 6
+			}
+		],
+	];
 
 	override public function new(stopSuffix:String = 'default')
 	{
-                super();
-                        
-                stop_icon_pixel = 1 * stop_icon_scale;
-                stop_icon_x_offset = 1 * stop_icon_pixel;
-                stop_icon_y_offset = 1 * stop_icon_pixel;
+		super();
 
-                var ezStopValues = stopvalues.get(stopSuffix.toLowerCase());
-                
-		loadGraphic(FileManager.getImageFile('stop-$stopSuffix'), ezStopValues[0], 16, 16);
+		stop_icon_pixel = 1 * stop_icon_scale;
+		stop_icon_x_offset = 1 * stop_icon_pixel;
+		stop_icon_y_offset = 1 * stop_icon_pixel;
 
-                if (ezStopValues[0])
-                {
-                        trace('$stopSuffix is animated: ${ezStopValues[1]}');
-                        animation.add('idle', ezStopValues[1].frames, ezStopValues[1].fps);
+		var ezStopValues:Array<Dynamic> = [false];
 
-                        animation.play('idle');
-                }
+		TryCatch.tryCatch(() ->
+		{
+			ezStopValues = stopvalues.get(stopSuffix.toLowerCase());
+		}, {
+				errFunc: () ->
+				{
+					trace('$stopSuffix has no stopvalues entry');
+					ezStopValues = [false];
+				}
+		});
+
+		var animated:Bool = false;
+
+		TryCatch.tryCatch(() ->
+		{
+			animated = ezStopValues[0];
+		}, {
+				errFunc: () ->
+				{
+					animated = false;
+				}
+		});
+
+		loadGraphic(FileManager.getImageFile('stop-$stopSuffix'), animated, 16, 16);
+
+		if (animated)
+		{
+			trace('$stopSuffix is animated: ${ezStopValues[1]}');
+			animation.add('idle', ezStopValues[1].frames, ezStopValues[1].fps);
+
+			animation.play('idle');
+		}
 
 		scale.set(stop_icon_scale, stop_icon_scale);
 	}

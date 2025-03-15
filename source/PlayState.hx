@@ -96,7 +96,10 @@ class PlayState extends FlxState
 			line.setPosition(referenceLine.x, referenceLine.y);
 			line.x += offset.x;
 			line.y += offset.y;
-			roadmapGraphic.add(line);
+			if (index != roadmap.length)
+			{
+				roadmapGraphic.add(line);
+			}
 
 			var label:FlxText = new FlxText(line.x, 0, 0, "", 32);
 			label.text = '${(entry.destination ? 'DESTINATION $destinationCounts' : 'PITSTOP $pitstopCounts')}:\n${entry.label}\nDate: ${entry.date}';
@@ -118,7 +121,15 @@ class PlayState extends FlxState
 			roadmapGraphic.add(label);
 			roadmapTexts.add(label);
 
-			var stopIcon:StopIcon = new StopIcon(entry.icon);
+			var icon:String = entry.icon;
+
+			if (icon == 'default' && entry.destination)
+			{
+				icon = 'destination';
+			}
+
+			var stopIcon:StopIcon = new StopIcon(icon);
+
 			stopIcon.setPosition(line.x + stopIcon.stop_icon_x_offset, line.y + stopIcon.stop_icon_y_offset);
 			roadmapGraphic.add(stopIcon);
 
@@ -176,7 +187,7 @@ class PlayState extends FlxState
 
 	function getRoadmapData():Array<RoadmapEntry>
 	{
-		var http = new haxe.Http("https://raw.githubusercontent.com/sphis-Sinco/Sinco-Roadmap/refs/heads/main/assets/data/roadmap.json");
+		/*var http = new haxe.Http("https://raw.githubusercontent.com/sphis-Sinco/Sinco-Roadmap/refs/heads/main/assets/data/roadmap.json");
 
 		http.onData = function(data:Dynamic)
 		{
@@ -198,7 +209,7 @@ class PlayState extends FlxState
 			trace('http error: $error');
 		}
 
-		http.request();
+			http.request(); */
 
 		return FileManager.getJSON(FileManager.getDataFile('roadmap.json'));
 	}
