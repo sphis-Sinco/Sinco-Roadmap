@@ -153,8 +153,8 @@ class PlayState extends FlxState
 	override public function update(elapsed:Float)
 	{
 		super.update(elapsed);
-		horizontalAndVerticalMovement();
 
+		horizontalAndVerticalMovement();
 		cameraZoom();
 
 		if (FlxG.keys.pressed.R)
