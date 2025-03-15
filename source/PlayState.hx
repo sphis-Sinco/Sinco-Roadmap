@@ -10,6 +10,7 @@ import flixel.math.FlxPoint;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import sinlib.utilities.FileManager;
+import sinlib.utilities.TryCatch;
 
 class PlayState extends FlxState
 {
@@ -27,6 +28,7 @@ class PlayState extends FlxState
 
 	public static var currentNewID:Int = 1;
 
+	var curDate:String;
 	override public function create()
 	{
 		super.create();
@@ -42,7 +44,7 @@ class PlayState extends FlxState
 		var curMonth:Int = Date.now().getMonth() + 1;
 		var curYear:Int = Date.now().getFullYear();
 
-		var curDate:String = '$curMonth.$curDay.$curYear';
+		curDate = '$curMonth.$curDay.$curYear';
 		trace('curDate: $curDate');
 
 		roadmap.push({
@@ -106,7 +108,7 @@ class PlayState extends FlxState
 
 	var offset:FlxPoint = new FlxPoint(0, 0);
 
-	var prevDate:String = '';
+	var nextDate:String = '';
 
 	var index:Int = 1;
 
@@ -131,20 +133,24 @@ class PlayState extends FlxState
 
 		var linelen:Int = line_default_length;
 
-		var prevDateArray = prevDate.split('.');
+		var nextDateArray = curDate.split('.');
+		TryCatch.tryCatch(() ->
+		{
+			nextDateArray = roadmap[index + 1].date.split('.');
+		});
 		var entrydateArray = entry.date.split('.');
-
-		final prevdateMonth:Int = Std.parseInt(prevDateArray[0]);
-		final prevdateDay:Int = Std.parseInt(prevDateArray[1]);
-		final prevdateYear:Int = Std.parseInt(prevDateArray[2]);
 
 		final entrydateMonth:Int = Std.parseInt(entrydateArray[0]);
 		final entrydateDay:Int = Std.parseInt(entrydateArray[1]);
 		final entrydateYear:Int = Std.parseInt(entrydateArray[2]);
 
-		var MonthDistance:Int = entrydateMonth - prevdateMonth;
-		var DayDistance:Int = entrydateDay - prevdateDay;
-		var YearDistance:Int = entrydateYear - prevdateYear;
+		final nextDateMonth:Int = Std.parseInt(nextDateArray[0]);
+		final nextDateDay:Int = Std.parseInt(nextDateArray[1]);
+		final nextDateYear:Int = Std.parseInt(nextDateArray[2]);
+
+		var MonthDistance:Int = nextDateMonth - entrydateMonth;
+		var DayDistance:Int = nextDateDay - entrydateDay;
+		var YearDistance:Int = nextDateYear - entrydateYear;
 
 		if (MonthDistance < 0)
 		{
@@ -159,13 +165,10 @@ class PlayState extends FlxState
 			YearDistance = -YearDistance;
 		}
 
-		if (offset.x != 0)
-		{
-			#if all_traces
-			trace('Time distances ($indexString): $MonthDistance/$DayDistance/$YearDistance');
-			#end
-			linelen = line_default_length + (((MonthDistance * 6) + (DayDistance * 3) + (YearDistance * 12)) * 12);
-		}
+		#if all_traces
+		trace('Time distances ($indexString): $MonthDistance/$DayDistance/$YearDistance');
+		#end
+		linelen = line_default_length + (((MonthDistance * 6) + (DayDistance * 3) + (YearDistance * 12)) * 12);
 		#if all_traces
 		trace('line length ($indexString): $linelen');
 		#end
@@ -216,7 +219,7 @@ class PlayState extends FlxState
 		if (index % 2 == 0)
 		{
 			#if all_traces
-			trace('Swapping from bottom to top ($indexString): ${entry.label}');
+			// trace('Swapping from bottom to top ($indexString): ${entry.label}');
 			#end
 			label.y = line.y - (line_height_w_vert_off) - (label_offset_height);
 		}
@@ -241,7 +244,7 @@ class PlayState extends FlxState
 		roadmapGraphic.add(stopIcon);
 
 		offset.x += line.width;
-		prevDate = entry.date;
+		nextDate = entry.date;
 
 		index++;
 		roadmapOffsetXPositions.push(offset.x);
