@@ -171,8 +171,6 @@ class PlayState extends FlxState
 
 		if (FlxG.keys.pressed.R)
 		{
-			cam.x = 0;
-			cam.y = 0;
                         FlxG.resetState();
 		}
 	}
