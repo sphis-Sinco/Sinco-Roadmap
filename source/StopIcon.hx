@@ -26,8 +26,8 @@ class StopIcon extends FlxSprite
 		super();
 
 		stop_icon_pixel = 1 * stop_icon_scale;
-		stop_icon_x_offset = (stopSuffix == 'default' ? 2 : 1) * stop_icon_pixel;
-		stop_icon_y_offset = stop_icon_x_offset;
+		stop_icon_x_offset = 1 * stop_icon_pixel;
+		stop_icon_y_offset = stop_icon_x_offset + (1 * stop_icon_pixel);
 
 		var ezStopValues:Array<Dynamic> = [false];
 

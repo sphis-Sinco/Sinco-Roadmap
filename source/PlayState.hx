@@ -123,7 +123,10 @@ class PlayState extends FlxState
 
 			var icon:String = entry.icon;
 
-			if (icon == 'default' && entry.destination)
+			if (icon == 'default'
+				&& entry.destination
+				|| !FileManager.exists(FileManager.getImageFile('stop-$icon'))
+				&& entry.destination)
 			{
 				icon = 'destination';
 			}
