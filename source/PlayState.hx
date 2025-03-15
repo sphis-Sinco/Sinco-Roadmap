@@ -2,6 +2,8 @@ package;
 
 import RoadmapJson.RoadmapEntry;
 import flixel.FlxBasic;
+import flixel.FlxG;
+import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.group.FlxGroup.FlxTypedGroup;
@@ -14,7 +16,7 @@ class PlayState extends FlxState
 {
 	public var roadmap:Array<RoadmapEntry>;
 
-	public var roadmapGraphic:FlxTypedGroup<FlxBasic>;
+	public var roadmapGraphic:FlxTypedGroup<FlxObject>;
 	public var roadmapTexts:FlxTypedGroup<FlxText>;
 
 	final line_default_length:Int = 256;
@@ -24,7 +26,7 @@ class PlayState extends FlxState
 		super.create();
 		roadmap = FileManager.getJSON(FileManager.getDataFile('roadmap.json'));
 
-		roadmapGraphic = new FlxTypedGroup<FlxBasic>();
+		roadmapGraphic = new FlxTypedGroup<FlxObject>();
 		add(roadmapGraphic);
 
 		roadmapTexts = new FlxTypedGroup<FlxText>();
@@ -97,8 +99,43 @@ class PlayState extends FlxState
 		}
 	}
 
+	final scrollSpeed:Float = 10.0;
+
 	override public function update(elapsed:Float)
 	{
 		super.update(elapsed);
+		if (FlxG.keys.pressed.LEFT)
+		{
+			moveHortizontal(scrollSpeed);
+		}
+		else if (FlxG.keys.pressed.RIGHT)
+		{
+			moveHortizontal(-scrollSpeed);
+		}
+
+		if (FlxG.keys.pressed.UP)
+		{
+			moveVertical(scrollSpeed);
+		}
+		else if (FlxG.keys.pressed.DOWN)
+		{
+			moveVertical(-scrollSpeed);
+		}
+
+		if (FlxG.keys.pressed.R)
+		{
+			FlxG.camera.x = 0;
+			FlxG.camera.y = 0;
+		}
+	}
+
+	function moveHortizontal(speed:Float)
+	{
+		FlxG.camera.x += speed;
+	}
+
+	function moveVertical(speed:Float)
+	{
+		FlxG.camera.y += speed;
 	}
 }
