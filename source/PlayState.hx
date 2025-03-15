@@ -21,7 +21,7 @@ class PlayState extends FlxState
 	final line_default_length:Int = 256;
 
 	public var cam:FlxObject;
-	var version:Version = new Version("Sinco Roadmap ", 1, 0, 0);
+	var version:Version = new Version("Sinco Roadmap ", 1, 1, 0);
 
 	override public function create()
 	{
