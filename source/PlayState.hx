@@ -10,6 +10,7 @@ import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxPoint;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
+import haxe.Json;
 import sinlib.utilities.FileManager;
 
 class PlayState extends FlxState
@@ -24,7 +25,7 @@ class PlayState extends FlxState
 	override public function create()
 	{
 		super.create();
-		roadmap = FileManager.getJSON(FileManager.getDataFile('roadmap.json'));
+		roadmap = getRoadmapData();
 
 		roadmapGraphic = new FlxTypedGroup<FlxObject>();
 		add(roadmapGraphic);
@@ -150,6 +151,7 @@ class PlayState extends FlxState
 		{
 			FlxG.camera.x = 0;
 			FlxG.camera.y = 0;
+                        FlxG.resetState();
 		}
 	}
 
@@ -161,5 +163,26 @@ class PlayState extends FlxState
 	function moveVertical(speed:Float)
 	{
 		FlxG.camera.y += speed;
+	}
+
+	function getRoadmapData():Array<RoadmapEntry>
+	{
+		var http = new haxe.Http("https://raw.githubusercontent.com/sphis-Sinco/Sinco-Roadmap/refs/heads/main/assets/data/roadmap.json");
+		var returnedData:Array<String> = [];
+
+		http.onData = function(data:String)
+		{
+			trace('No http error!');
+                        return Json.parse(data);
+		}
+
+		http.onError = function(error)
+		{
+			trace('http error: $error');
+		}
+
+		http.request();
+
+		return FileManager.getJSON(FileManager.getDataFile('roadmap.json'));
 	}
 }
