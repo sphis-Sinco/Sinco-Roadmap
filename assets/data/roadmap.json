@@ -2,11 +2,13 @@
         {
                 "date":"3.15.2025",
                 "destination": true,
-                "label": "Sinco roadmap v1"
+                "label": "Sinco roadmap v1",
+                "icon": "default"
         },
         {
                 "date":"3.16.2025",
                 "destination": false,
-                "label": "Reje 1 (animation)"
+                "label": "Reje 1 (animation)",
+                "icon": "newgrounds"
         }
 ]
