@@ -51,16 +51,21 @@ class PlayState extends FlxState
 		add(cam);
 
 		FlxG.camera.follow(cam);
+		var helpText:FlxText = new FlxText(10, 10, 0, "Arrow keys - Move Camera\nQ/E - Zoom in/out (Do this process faster while holding shift)\nR - Reset",
+			16);
+		helpText.scrollFactor.set(0, 0);
+		add(helpText);
 	}
 
 	var destinationCounts:Int = 0;
 	var pitstopCounts:Int = 0;
 
 	var offset:FlxPoint = new FlxPoint(0, 0);
-        
+
 	var prevDate:String = '';
 
 	var index:Int = 1;
+
 	function addNewEntryObjects(entry:RoadmapEntry)
 	{
 		final atEnd:Bool = (index != roadmap.length);
