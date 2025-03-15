@@ -1,8 +1,6 @@
 package;
 
 import RoadmapJson.RoadmapEntry;
-import flixel.FlxBasic;
-import flixel.FlxCamera;
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSprite;
@@ -11,9 +9,7 @@ import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxPoint;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
-import haxe.Json;
 import sinlib.utilities.FileManager;
-import sinlib.utilities.TryCatch;
 
 class PlayState extends FlxState
 {
@@ -25,6 +21,7 @@ class PlayState extends FlxState
 	final line_default_length:Int = 256;
 
 	public var cam:FlxObject;
+	var version:Version = new Version("Sinco Roadmap ", 1, 0, 0);
 
 	override public function create()
 	{
@@ -48,8 +45,8 @@ class PlayState extends FlxState
 			date: curDate,
 			destination: false,
 			doesntCount: true,
-			label: "Now",
-			icon: "now"
+			label: 'Now',
+			icon: 'now'
 		});
 
 		for (entry in roadmap)
@@ -63,11 +60,14 @@ class PlayState extends FlxState
 		add(cam);
 
 		FlxG.camera.follow(cam);
+
 		var helpText:FlxText = new FlxText(10, 10, 0,
-			"Arrow keys - Move Camera\nQ/E - Zoom in/out\nHolding Shift - increase speed of Camera movement and zooming\nR - Reset",
-			16);
+			'Arrow keys - Move Camera\nQ/E - Zoom in/out\nHolding Shift - increase speed of Camera movement and zooming\nR - Reset', 16);
 		helpText.scrollFactor.set(0, 0);
 		add(helpText);
+		var versionText:FlxText = new FlxText(10, 10 + helpText.height, 0, version.toString(), 16);
+		versionText.scrollFactor.set(0, 0);
+		add(versionText);
 	}
 
 	var destinationCounts:Int = 0;
@@ -159,7 +159,7 @@ class PlayState extends FlxState
 			labelprefix = '${(entry.destination ? 'DESTINATION $destinationCounts' : 'PITSTOP $pitstopCounts')}:\n';
 		}
 
-		var label:FlxText = new FlxText(line.x, 0, 0, "", 16);
+		var label:FlxText = new FlxText(line.x, 0, 0, '', 16);
 		label.text = '${labelprefix}${entry.label}\nDate: ${entry.date}';
 
 		final label_offset_height:Float = label.height;
@@ -316,7 +316,7 @@ class PlayState extends FlxState
 
 	function getRoadmapData():Array<RoadmapEntry>
 	{
-		/*var http = new haxe.Http("https://raw.githubusercontent.com/sphis-Sinco/Sinco-Roadmap/refs/heads/main/assets/data/roadmap.json");
+		/*var http = new haxe.Http('https://raw.githubusercontent.com/sphis-Sinco/Sinco-Roadmap/refs/heads/main/assets/data/roadmap.json');
 
 			http.onData = function(data:Dynamic)
 			{
