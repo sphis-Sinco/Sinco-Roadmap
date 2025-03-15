@@ -279,6 +279,8 @@
                 "date":"3.15.2025",
                 "destination": false,
                 "label": "Sinco Roadmap v1.1",
-                "icon": "project"
+                "icon": "project",
+                "isNew": true,
+                "newID": "1.1.0"
         }
 ]
