@@ -266,7 +266,7 @@
         {
                 "date":"3.13.2025",
                 "destination": false,
-                "label": "Semanalmente 1 start",
+                "label": "Semanalmente 1",
                 "icon": "gamejam"
         },
         {
@@ -274,11 +274,5 @@
                 "destination": true,
                 "label": "Sinco Roadmap v1",
                 "icon": "project"
-        },
-        {
-                "date":"3.27.2025",
-                "destination": false,
-                "label": "Semanalmente 1 end",
-                "icon": "gamejam"
         }
 ]

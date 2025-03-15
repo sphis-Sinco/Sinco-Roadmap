@@ -38,16 +38,25 @@ class PlayState extends FlxState
 		add(roadmapStops);
 
 		var curDay:Int = Date.now().getDate();
-		var curMonth:Int = Date.now().getMonth();
+		var curMonth:Int = Date.now().getMonth() + 1;
 		var curYear:Int = Date.now().getFullYear();
 
 		var curDate:String = '$curMonth.$curDay.$curYear';
 		trace('curDate: $curDate');
 
+		roadmap.push({
+			date: curDate,
+			destination: false,
+			doesntCount: true,
+			label: "Now",
+			icon: "now"
+		});
+
 		for (entry in roadmap)
 		{
 			addNewEntryObjects(entry);
 		}
+
 		cam = new FlxObject(0, -180, 1280, 720);
 		add(cam);
 
@@ -72,13 +81,16 @@ class PlayState extends FlxState
 	{
 		final atEnd:Bool = (index != roadmap.length);
 
-		if (entry.destination)
+		if (!entry.doesntCount)
 		{
-			destinationCounts++;
-		}
-		else
-		{
-			pitstopCounts++;
+			if (entry.destination)
+			{
+				destinationCounts++;
+			}
+			else
+			{
+				pitstopCounts++;
+			}
 		}
 
 		final indexString:String = 'Idx: $index';
@@ -138,8 +150,15 @@ class PlayState extends FlxState
 			roadmapGraphic.add(line);
 		}
 
+		var labelprefix:String = '';
+
+		if (!entry.doesntCount)
+		{
+			labelprefix = '${(entry.destination ? 'DESTINATION $destinationCounts' : 'PITSTOP $pitstopCounts')}:\n';
+		}
+
 		var label:FlxText = new FlxText(line.x, 0, 0, "", 16);
-		label.text = '${(entry.destination ? 'DESTINATION $destinationCounts' : 'PITSTOP $pitstopCounts')}:\n${entry.label}\nDate: ${entry.date}';
+		label.text = '${labelprefix}${entry.label}\nDate: ${entry.date}';
 
 		final label_offset_height:Float = label.height;
 
@@ -178,6 +197,7 @@ class PlayState extends FlxState
 
 		#if !all_traces
 		trace('Made $index/${roadmap.length} entries');
+		// trace(entry.date);
 		#end
 
 		index++;
@@ -186,7 +206,7 @@ class PlayState extends FlxState
 	final scrollSpeed:Float = 10.0;
 	final camScrollSpeed:Float = 0.1;
 
-	final shiftScrollSpeedMult:Float = 2.0;
+	final shiftScrollSpeedMult:Float = 5.0;
 
 	override public function update(elapsed:Float)
 	{

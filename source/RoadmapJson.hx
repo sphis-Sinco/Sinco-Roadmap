@@ -4,6 +4,7 @@ typedef RoadmapEntry =
 {
 	var date:String;
 	var destination:Bool;
+	var ?doesntCount:Bool;
 	var label:String;
 	var icon:String;
 }
