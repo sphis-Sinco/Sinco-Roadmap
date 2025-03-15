@@ -101,7 +101,7 @@ class PlayState extends FlxState
 				roadmapGraphic.add(line);
 			}
 
-			var label:FlxText = new FlxText(line.x, 0, 0, "", 32);
+			var label:FlxText = new FlxText(line.x, 0, 0, "", 16);
 			label.text = '${(entry.destination ? 'DESTINATION $destinationCounts' : 'PITSTOP $pitstopCounts')}:\n${entry.label}\nDate: ${entry.date}';
 
 			final label_offset_height:Float = label.height;
@@ -129,7 +129,6 @@ class PlayState extends FlxState
 			}
 
 			var stopIcon:StopIcon = new StopIcon(icon);
-
 			stopIcon.setPosition(line.x + stopIcon.stop_icon_x_offset, line.y + stopIcon.stop_icon_y_offset);
 			roadmapGraphic.add(stopIcon);
 
