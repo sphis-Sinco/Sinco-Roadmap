@@ -1,3 +1,6 @@
+# v1.3 - 3/17/2025
+- Added new entries
+
 # v1.2.2 - 3/16/2025
 After this update minor entries will be added up to the next sinco roadmap update that appears on the roadmap
 - Added new entry
