@@ -1,3 +1,7 @@
+# v1.2.2 - 3/16/2025
+After this update minor entries will be added up to the next sinco roadmap update that appears on the roadmap
+- Added new entry
+
 # v1.2.1 - 3/16/2025
 After this update minor updates to Sinco Roadmap will not be on the roadmap
 - Fixed Vs Guy V2.0-1 entry
