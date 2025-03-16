@@ -1,3 +1,9 @@
+# v1.2 - 3/16/2025
+- Added new entries for all Vs Guy (concept edition) versions
+- Fixed date for Vs Guy V1 entry
+- Added new entries for all Vs Guy (plus) versions
+- Added new entry for Sinco Roadmap v1.2
+
 # v1.1 - 3/15/2025
 - Fixed distances from one stop to the next(?)
 - Added save data

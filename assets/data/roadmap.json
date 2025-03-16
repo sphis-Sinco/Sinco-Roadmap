@@ -30,10 +30,58 @@
                 "icon": "youtube"
         },
         {
-                "date":"1.27.2024",
+                "date":"1.26.2024",
                 "destination": false,
                 "label": "Vs Guy V1",
                 "icon": "fnf"
+        },
+        {
+                "date":"1.27.2024",
+                "destination": false,
+                "label": "Vs Guy V2",
+                "icon": "fnf",
+                "isNew": true,
+                "newID": 2
+        },
+        {
+                "date":"1.28.2024",
+                "destination": false,
+                "label": "Vs Guy V2.1",
+                "icon": "fnf",
+                "isNew": true,
+                "newID": 2
+        },
+        {
+                "date":"1.28.2024",
+                "destination": false,
+                "label": "Vs Guy V2.2",
+                "icon": "fnf",
+                "isNew": true,
+                "newID": 2
+        },
+        {
+                "date":"1.28.2024",
+                "destination": false,
+                "label": "Vs Guy V2.3",
+                "icon": "fnf",
+                "isNew": true,
+                "newID": 2
+        },
+        {
+                "date":"2.2.2024",
+                "destination": false,
+                "label": "Vs Guy V3",
+                "icon": "fnf",
+                "isNew": true,
+                "newID": 2
+        },
+        {
+                "date":"2.4.2024",
+                "destination": false,
+                "label": "Vs Guy V3.5",
+                "icon": "fnf",
+                "isNew": true,
+                "newID": 2
         },
         {
                 "date":"2.18.2024",
@@ -58,6 +106,118 @@
                 "destination": false,
                 "label": "First video with sinco as the prefix",
                 "icon": "sinco"
+        },
+        {
+                "date":"11.16.2024",
+                "destination": false,
+                "label": "Vs Guy Plus V1",
+                "icon": "fnf",
+                "isNew": true,
+                "newID": 2
+        },
+        {
+                "date":"11.16.2024",
+                "destination": false,
+                "label": "Vs Guy Plus V1.1",
+                "icon": "fnf",
+                "isNew": true,
+                "newID": 2
+        },
+        {
+                "date":"11.16.2024",
+                "destination": false,
+                "label": "Vs Guy Plus V1.2",
+                "icon": "fnf",
+                "isNew": true,
+                "newID": 2
+        },
+        {
+                "date":"11.17.2024",
+                "destination": false,
+                "label": "Vs Guy Plus V1.2-1",
+                "icon": "fnf",
+                "isNew": true,
+                "newID": 2
+        },
+        {
+                "date":"11.17.2024",
+                "destination": false,
+                "label": "Vs Guy Plus V1.2-2",
+                "icon": "fnf",
+                "isNew": true,
+                "newID": 2
+        },
+        {
+                "date":"11.22.2024",
+                "destination": false,
+                "label": "Vs Guy Plus V1.3",
+                "icon": "fnf",
+                "isNew": true,
+                "newID": 2
+        },
+        {
+                "date":"11.23.2024",
+                "destination": false,
+                "label": "Vs Guy Plus V1.4",
+                "icon": "fnf",
+                "isNew": true,
+                "newID": 2
+        },
+        {
+                "date":"11.28.2024",
+                "destination": false,
+                "label": "Vs Guy Plus V1.5",
+                "icon": "fnf",
+                "isNew": true,
+                "newID": 2
+        },
+        {
+                "date":"11.29.2024",
+                "destination": false,
+                "label": "Vs Guy Plus V1.5-1",
+                "icon": "fnf",
+                "isNew": true,
+                "newID": 2
+        },
+        {
+                "date":"11.29.2024",
+                "destination": false,
+                "label": "Vs Guy Plus V1.5-2",
+                "icon": "fnf",
+                "isNew": true,
+                "newID": 2
+        },
+        {
+                "date":"12.14.2024",
+                "destination": false,
+                "label": "Vs Guy Plus V1.9",
+                "icon": "fnf",
+                "isNew": true,
+                "newID": 2
+        },
+        {
+                "date":"12.14.2024",
+                "destination": false,
+                "label": "Vs Guy Plus V2.0",
+                "icon": "fnf",
+                "isNew": true,
+                "newID": 2
+        },
+        {
+                "date":"12.29.2024",
+                "destination": false,
+                "label": "Vs Guy has been renamed to Vs Guy (CONCEPT EDITION)",
+                "icon": "fnf",
+                "isNew": true,
+                "newID": 2
+        },
+        {
+                "date":"12.29.2024",
+                "destination": false,
+                "label": "Vs Guy Plus has been renamed to Vs Guy",
+                "icon": "fnf",
+                "isNew": true,
+                "newID": 2
         },
         {
                 "date":"1.11.2025",
@@ -282,5 +442,19 @@
                 "icon": "project",
                 "isNew": true,
                 "newID": 1
+        },
+        {
+                "date":"3.16.2025",
+                "destination": false,
+                "label": "Vs Guy V2.0-1",
+                "icon": "fnf"
+        },
+        {
+                "date":"3.16.2025",
+                "destination": false,
+                "label": "Sinco Roadmap v1.2",
+                "icon": "project",
+                "isNew": true,
+                "newID": 2
         }
 ]
