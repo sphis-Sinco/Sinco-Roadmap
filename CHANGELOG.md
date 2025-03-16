@@ -1,3 +1,8 @@
+# v1.2.1 - 3/16/2025
+After this update minor updates to Sinco Roadmap will not be on the roadmap
+- Fixed Vs Guy V2.0-1 entry
+- Added new entries
+
 # v1.2 - 3/16/2025
 - Added new entries for all Vs Guy (concept edition) versions
 - Fixed date for Vs Guy V1 entry
