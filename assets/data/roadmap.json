@@ -506,5 +506,13 @@
                 "icon": "youtube",
                 "isNew": true,
                 "newID": 5
+        },
+        {
+                "date":"4.6.2025",
+                "destination": false,
+                "label": "FCCT v0.1.0 is released",
+                "icon": "project",
+                "isNew": true,
+                "newID": 5
         }
 ]
