@@ -493,7 +493,7 @@
         },
         {
                 "date":"3.28.2025",
-                "destination": false,
+                "destination": true,
                 "label": "Paul leps gains ownership of the Sinco Adventure comics",
                 "icon": "random",
                 "isNew": true,
