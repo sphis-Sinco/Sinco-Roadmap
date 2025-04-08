@@ -514,5 +514,13 @@
                 "icon": "project",
                 "isNew": true,
                 "newID": 5
+        },
+        {
+                "date":"4.8.2025",
+                "destination": false,
+                "label": "Sinco and Portilizen v0.3.0a release",
+                "icon": "game",
+                "isNew": true,
+                "newID": 5
         }
 ]
